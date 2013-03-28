@@ -57,7 +57,10 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     private static final int MIN_LOAD_COUNT = 8;
     private static final int DATA_CACHE_SIZE = 32;
-    private static final int IMAGE_CACHE_SIZE = 5;
+
+    //changed by Bevis, for Homlet bmp display more clear.
+    private static final int IMAGE_CACHE_SIZE = 3;
+//    private static final int IMAGE_CACHE_SIZE = 5;
 
     private static final int BIT_SCREEN_NAIL = 1;
     private static final int BIT_FULL_IMAGE = 2;
@@ -82,7 +85,11 @@ public class PhotoDataAdapter implements PhotoPage.Model {
 
     static {
         int k = 0;
-        sImageFetchSeq = new ImageFetch[1 + (IMAGE_CACHE_SIZE - 1) * 2 + 3];
+        
+        //changed by Bevis, for Homlet bmp display more clear.
+        sImageFetchSeq = new ImageFetch[1 + (IMAGE_CACHE_SIZE - 1) * 2 + 1];
+//        sImageFetchSeq = new ImageFetch[1 + (IMAGE_CACHE_SIZE - 1) * 2 + 3];
+
         sImageFetchSeq[k++] = new ImageFetch(0, BIT_SCREEN_NAIL);
 
         for (int i = 1; i < IMAGE_CACHE_SIZE; ++i) {
@@ -91,8 +98,10 @@ public class PhotoDataAdapter implements PhotoPage.Model {
         }
 
         sImageFetchSeq[k++] = new ImageFetch(0, BIT_FULL_IMAGE);
-        sImageFetchSeq[k++] = new ImageFetch(1, BIT_FULL_IMAGE);
-        sImageFetchSeq[k++] = new ImageFetch(-1, BIT_FULL_IMAGE);
+        
+      //changed by Bevis, for Homlet bmp display more clear.
+//        sImageFetchSeq[k++] = new ImageFetch(1, BIT_FULL_IMAGE);
+//        sImageFetchSeq[k++] = new ImageFetch(-1, BIT_FULL_IMAGE);
     }
 
     private final TileImageViewAdapter mTileProvider = new TileImageViewAdapter();

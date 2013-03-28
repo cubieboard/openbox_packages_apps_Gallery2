@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest android:versionCode="30682"
+<manifest android:versionCode="0"
         android:versionName="1.1.30682"
         xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.android.gallery3d">
@@ -18,9 +18,13 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <supports-screens android:smallScreens="false"
             android:normalScreens="true" android:largeScreens="true"
@@ -29,14 +33,23 @@
     <application android:icon="@mipmap/ic_launcher_gallery" android:label="@string/app_name"
             android:name="com.android.gallery3d.app.GalleryAppImpl"
             android:theme="@style/Theme.Gallery">
+        
+        <!--
         <activity android:name="com.android.gallery3d.app.MovieActivity"
                 android:label="@string/movie_view_label"
-                android:configChanges="orientation|keyboardHidden|screenSize">
+                android:screenOrientation="landscape"
+                android:theme="@style/Theme.Movie" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="rtsp" />
+             </intent-filter>
+             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="video/*" />
+                <data android:mimeType="application/sdp" />
              </intent-filter>
              <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -56,7 +69,6 @@
                 <data android:mimeType="application/sdp" />
              </intent-filter>
              <intent-filter>
-                !-- HTTP live support -->
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
@@ -67,6 +79,7 @@
                 <data android:mimeType="application/x-mpegurl" />
              </intent-filter>
         </activity>
+        -->
 
         <activity android:name="com.android.gallery3d.app.Gallery" android:label="@string/app_name"
                 android:configChanges="keyboardHidden|orientation|screenSize">
@@ -265,5 +278,10 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+        <service android:name="com.android.gallery3d.update.CheckUpdate">
+            <intent-filter>
+                <action android:name="org.crazyit.anction.SERVICE" />    
+            </intent-filter>
+        </service>
     </application>
 </manifest>
